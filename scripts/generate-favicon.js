@@ -11,7 +11,12 @@ async function generateFavicon() {
     const icon192Path = path.join(iconsDir, 'icon-192.png');
     const icon512Path = path.join(iconsDir, 'icon-512.png');
 
+    const appDir = path.join(__dirname, '../app');
+    const nextIconPath = path.join(appDir, 'icon.png');
+    const nextAppleIconPath = path.join(appDir, 'apple-icon.png');
+
     fs.mkdirSync(iconsDir, { recursive: true });
+    fs.mkdirSync(appDir, { recursive: true });
     
     // Convert webp to ico with multiple sizes
     await sharp(inputPath)
@@ -27,6 +32,16 @@ async function generateFavicon() {
       .resize(512, 512, { fit: 'cover' })
       .png()
       .toFile(icon512Path);
+
+    await sharp(inputPath)
+      .resize(32, 32, { fit: 'cover' })
+      .png()
+      .toFile(nextIconPath);
+
+    await sharp(inputPath)
+      .resize(180, 180, { fit: 'cover' })
+      .png()
+      .toFile(nextAppleIconPath);
       
     console.log('Generated favicon.ico successfully');
   } catch (error) {
