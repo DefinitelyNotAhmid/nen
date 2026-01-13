@@ -42,6 +42,12 @@
   font-family: Georgia, 'Times New Roman', serif;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -53,10 +59,6 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
 }
 
 .property-search-select {
@@ -171,6 +173,7 @@ p, span, div, a, li, label {
   height: 520px;
   perspective: 1200px;
   transform-style: preserve-3d;
+  overflow: hidden;
 }
 
 .property-coverflow-card {
@@ -358,23 +361,121 @@ p, span, div, a, li, label {
 
 @media (max-width: 640px) {
   .property-coverflow-stage {
-    height: 540px;
+    height: 480px;
+  }
+
+  .property-coverflow-card {
+    width: min(320px, 85vw);
   }
 
   .property-coverflow-card[data-offset="1"] {
-    transform: translateX(calc(-50% + 210px)) rotateY(-30deg) translateZ(10px) scale(0.9);
+    transform: translateX(calc(-50% + 140px)) rotateY(-25deg) translateZ(10px) scale(0.88);
   }
 
   .property-coverflow-card[data-offset="-1"] {
-    transform: translateX(calc(-50% - 210px)) rotateY(30deg) translateZ(10px) scale(0.9);
+    transform: translateX(calc(-50% - 140px)) rotateY(25deg) translateZ(10px) scale(0.88);
   }
 
   .property-coverflow-card[data-offset="2"] {
-    transform: translateX(calc(-50% + 340px)) rotateY(-45deg) translateZ(-100px) scale(0.8);
+    transform: translateX(calc(-50% + 240px)) rotateY(-40deg) translateZ(-80px) scale(0.78);
   }
 
   .property-coverflow-card[data-offset="-2"] {
-    transform: translateX(calc(-50% - 340px)) rotateY(45deg) translateZ(-100px) scale(0.8);
+    transform: translateX(calc(-50% - 240px)) rotateY(40deg) translateZ(-80px) scale(0.78);
+  }
+
+  .property-coverflow-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .property-coverflow-btn-left {
+    left: 5px;
+  }
+
+  .property-coverflow-btn-right {
+    right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .property-coverflow-stage {
+    height: 440px;
+  }
+
+  .property-coverflow-card {
+    width: min(280px, 90vw);
+  }
+
+  .property-coverflow-card[data-offset="1"] {
+    transform: translateX(calc(-50% + 120px)) rotateY(-20deg) translateZ(5px) scale(0.85);
+  }
+
+  .property-coverflow-card[data-offset="-1"] {
+    transform: translateX(calc(-50% - 120px)) rotateY(20deg) translateZ(5px) scale(0.85);
+  }
+
+  .property-coverflow-card[data-offset="2"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .property-coverflow-card[data-offset="-2"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Mobile typography improvements */
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* Mobile spacing improvements */
+  .py-20 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .mb-16 {
+    margin-bottom: 2.5rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-8 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-6 {
+    margin-bottom: 1.25rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  /* Mobile button improvements */
+  .px-8 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .py-4 {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
   }
 }
 

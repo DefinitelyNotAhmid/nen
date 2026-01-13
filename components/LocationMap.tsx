@@ -17,9 +17,9 @@ export default function LocationMap() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
             <div className="lg:col-span-2 rounded-lg overflow-hidden border border-gray-200 shadow-lg bg-white dark:bg-[#0b1220] dark:border-white/10 dark:shadow-black/30">
-              <div className="relative w-full aspect-[16/9]">
+              <div className="relative w-full aspect-[16/9] md:aspect-[16/9]">
                 <iframe
                   title="Google Map - Marci Metzger Office"
                   src={embedUrl}
@@ -31,10 +31,10 @@ export default function LocationMap() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 shadow-lg bg-white p-6 flex flex-col justify-between dark:bg-[#0b1220] dark:border-white/10 dark:shadow-black/30">
+            <div className="rounded-lg border border-gray-200 shadow-lg bg-white p-4 md:p-6 flex flex-col justify-between dark:bg-[#0b1220] dark:border-white/10 dark:shadow-black/30">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 dark:text-white">Office Address</h3>
-                <p className="text-gray-700 leading-relaxed dark:text-gray-200">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 dark:text-white">Office Address</h3>
+                <p className="text-gray-700 leading-relaxed dark:text-gray-200 text-sm md:text-base">
                   3190 HW-160, Suite F
                   <br />
                   Pahrump, NV 89048
@@ -46,12 +46,12 @@ export default function LocationMap() {
                 </div>
               </div>
 
-              <div className="mt-6">
+              <div className="mt-4 md:mt-6">
                 <a
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-[#0038A8] px-5 py-3 font-bold text-white hover:bg-[#002d8a] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0038A8]"
+                  className="inline-flex w-full items-center justify-center rounded-lg bg-[#0038A8] px-4 py-2 md:px-5 md:py-3 font-bold text-white hover:bg-[#002d8a] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0038A8] text-sm md:text-base"
                   aria-label="Open Google Maps directions to 3190 HW-160 Suite F Pahrump NV"
                 >
                   Get Directions
