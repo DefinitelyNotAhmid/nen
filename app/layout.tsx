@@ -25,7 +25,14 @@ export const metadata: Metadata = {
   publisher: "The Ridge Realty Group",
   applicationName: "Marci Metzger Homes",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/qt=q_95.webp",
+        type: "image/webp",
+      },
+    ],
+    shortcut: ["/qt=q_95.webp"],
+    apple: ["/qt=q_95.webp"],
   },
   openGraph: {
     title: "Marci Metzger - Pahrump Realtor | The Ridge Realty Group",
