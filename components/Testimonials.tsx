@@ -13,7 +13,7 @@ export default function Testimonials() {
     {
       id: 2,
       image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80',
-      name: 'Linda Anand',
+      name: 'Kimmy Doe',
       role: 'Commercial Property Seller',
       content: 'Selling our commercial property was a complex task, but Marci handled everything with utmost professionalism and expertise. She secured a great deal for us. Highly recommended!',
       rating: 5
