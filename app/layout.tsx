@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   publisher: "The Ridge Realty Group",
   applicationName: "Marci Metzger Homes",
   icons: {
-    icon: "/qt=q_95.webp",
-    shortcut: "/qt=q_95.webp",
-    apple: "/qt=q_95.webp",
+    icon: [{ url: "/qt=q_95.webp", type: "image/webp" }],
+    shortcut: ["/qt=q_95.webp"],
+    apple: ["/qt=q_95.webp"],
   },
   openGraph: {
     title: "Marci Metzger - Pahrump Realtor | The Ridge Realty Group",
@@ -74,7 +74,7 @@ export default function RootLayout({
     url: siteUrl,
     telephone: "(206) 919-6886",
     image: `${siteUrl}/opengraph-image`,
-    logo: `${siteUrl}/favicon.ico`,
+    logo: `${siteUrl}/qt=q_95.webp`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "3190 HW-160, Suite F",
