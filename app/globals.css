@@ -174,11 +174,12 @@ p, span, div, a, li, label {
   perspective: 1200px;
   transform-style: preserve-3d;
   overflow: hidden;
+  padding-top: 18px;
 }
 
 .property-coverflow-card {
   position: absolute;
-  top: 0;
+  top: 18px;
   left: 50%;
   width: min(480px, 88vw);
   transform: translateX(-50%);
