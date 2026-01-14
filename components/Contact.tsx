@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Reveal from './Reveal';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -70,17 +71,20 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-white dark:bg-[#070a10]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
-              Get In Touch
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
-              Schedule a Private Consultation Today
-            </p>
-          </div>
+          <Reveal from="up">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
+                Get In Touch
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+                Schedule a Private Consultation Today
+              </p>
+            </div>
+          </Reveal>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            <div>
+            <Reveal from="up">
+              <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6 dark:text-white">
                 Contact Information
               </h3>
@@ -153,10 +157,12 @@ export default function Contact() {
                   Licensed Real Estate Professional serving Pahrump, Las Vegas, Henderson, and surrounding Nevada communities.
                 </p>
               </div>
-            </div>
+              </div>
+            </Reveal>
 
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <Reveal from="up" delayMs={120}>
+              <div>
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 dark:text-gray-200">
                     Full Name *
@@ -271,8 +277,9 @@ export default function Contact() {
                 <p className="text-xs text-gray-500 text-center dark:text-gray-400">
                   By submitting this form, you agree to be contacted by Marci Metzger - The Ridge Realty Group regarding your inquiry.
                 </p>
-              </form>
-            </div>
+                </form>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

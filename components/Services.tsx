@@ -1,3 +1,7 @@
+'use client';
+
+import Reveal from './Reveal';
+
 export default function Services() {
   const services = [
     {
@@ -27,46 +31,49 @@ export default function Services() {
     <section id="services" className="py-20 bg-gray-50 dark:bg-[#0b1324]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
-              Our Services
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
-              Real Estate Done Right — Commercial & Residential
-            </p>
-          </div>
+          <Reveal from="up">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
+                Our Services
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
+                Real Estate Done Right — Commercial & Residential
+              </p>
+            </div>
+          </Reveal>
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group dark:bg-white/5 dark:border dark:border-white/10 dark:shadow-black/30"
-              >
-                <div className="mb-6 group-hover:scale-105 transition-transform duration-300">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-40 h-40 rounded-full object-cover mx-auto"
-                    loading="lazy"
-                  />
+              <Reveal key={index} from="up" delayMs={index * 90}>
+                <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group dark:bg-white/5 dark:border dark:border-white/10 dark:shadow-black/30">
+                  <div className="mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-40 h-40 rounded-full object-cover mx-auto"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <h3 className="text-lg font-medium text-gray-900 mb-4 text-center dark:text-white">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-sm text-gray-700 leading-relaxed text-center dark:text-gray-200">
+                    {service.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-lg font-medium text-gray-900 mb-4 text-center dark:text-white">
-                  {service.title}
-                </h3>
-                
-                <p className="text-sm text-gray-700 leading-relaxed text-center dark:text-gray-200">
-                  {service.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
 
-          <div className="mt-12 bg-white p-8 rounded-lg shadow-md border-l-4 border-[#0038A8] dark:bg-white/5 dark:border-white/10 dark:shadow-black/30">
-            <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-200">
-              <strong>Nervous about your property adventure?</strong> Don't be. Whether you're getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible. We live, work, and play in this community. Happy to help you find where to put your hard-earned dollars.
-            </p>
-          </div>
+          <Reveal from="up" delayMs={150}>
+            <div className="mt-12 bg-white p-8 rounded-lg shadow-md border-l-4 border-[#0038A8] dark:bg-white/5 dark:border-white/10 dark:shadow-black/30">
+              <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-200">
+                <strong>Nervous about your property adventure?</strong> Don't be. Whether you're getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible. We live, work, and play in this community. Happy to help you find where to put your hard-earned dollars.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

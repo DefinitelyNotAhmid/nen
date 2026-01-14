@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Reveal from './Reveal';
 
 export default function Properties() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -106,16 +107,19 @@ export default function Properties() {
     <section id="properties" className="py-20 bg-white dark:bg-[#070a10]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
-              Properties Gallery
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
-              Explore our selection of finest properties across Nevada
-            </p>
-          </div>
+          <Reveal from="up">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 dark:text-white">
+                Properties Gallery
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
+                Explore our selection of finest properties across Nevada
+              </p>
+            </div>
+          </Reveal>
 
-          <div className="property-coverflow" aria-label="Featured properties carousel">
+          <Reveal from="up" delayMs={120}>
+            <div className="property-coverflow" aria-label="Featured properties carousel">
             <button
               type="button"
               onClick={() => go(-1)}
@@ -215,7 +219,8 @@ export default function Properties() {
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </button>
-          </div>
+            </div>
+          </Reveal>
 
           {modalImage && (
             <div
@@ -253,17 +258,19 @@ export default function Properties() {
             </div>
           )}
 
-          <div className="text-center mt-12">
-            <a
-              href="#search"
-              className="inline-flex items-center px-8 py-4 bg-[#CE1126] text-white font-semibold rounded-lg hover:bg-[#b00f20] transition-colors shadow-md hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1126] dark:shadow-black/30"
-            >
-              View All Listings
-              <svg className="w-5 h-5 ml-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
-          </div>
+          <Reveal from="up" delayMs={180}>
+            <div className="text-center mt-12">
+              <a
+                href="#search"
+                className="inline-flex items-center px-8 py-4 bg-[#CE1126] text-white font-semibold rounded-lg hover:bg-[#b00f20] transition-colors shadow-md hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CE1126] dark:shadow-black/30"
+              >
+                View All Listings
+                <svg className="w-5 h-5 ml-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
