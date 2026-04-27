@@ -23,7 +23,14 @@ export default function Hero() {
       {/* ── Decorative Images ── */}
 
       <div className={`absolute bottom-0 right-0 z-0 pointer-events-none transition-all duration-1000 delay-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-        <img src="/astronautonamoon.png?v=update2" alt="Astronaut on a moon" className="w-[300px] md:w-[450px] lg:w-[600px] h-auto object-contain object-bottom translate-x-5 lg:translate-x-8" />
+        <Image
+          src="/astronautonamoon.png"
+          alt="Astronaut on a moon"
+          width={600}
+          height={600}
+          className="h-auto w-[300px] object-contain object-bottom translate-x-5 md:w-[450px] lg:w-[600px] lg:translate-x-8"
+          priority
+        />
       </div>
 
       {/* ── Gradient orbs ── */}
