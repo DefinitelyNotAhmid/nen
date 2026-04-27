@@ -1,45 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "@/lib/hooks/useIntersectionObserver";
 import StackIcon from "tech-stack-icons";
-
-const techStack = [
-  "html5", "css3", "js", "typescript", "react", "vitejs",
-  "nextjs2", "django", "php", "sqlite", "mysql", "supabase"
-];
-
-const skills = [
-  { name: "React / Next.js", pct: 95, color: "from-pink to-purple" },
-  { name: "TypeScript", pct: 90, color: "from-purple to-[#5CE1E6]" },
-  { name: "Tailwind CSS", pct: 92, color: "from-[#5CE1E6] to-purple" },
-  { name: "UI / UX Design", pct: 85, color: "from-yellow to-pink" },
-];
-
-const stats = [
-  { value: "4th", label: "Year CS/IT" },
-  { value: "10+", label: "Projects Built" },
-  { value: "∞", label: "Coffee Cups" },
-];
+import { techStack } from "@/lib/constants";
+import { skills, stats } from "@/data/skills";
 
 export default function About() {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.25 });
 
   return (
     <section
       id="about"
-      ref={ref}
+      ref={elementRef}
       className="section-padding relative overflow-hidden"
     >
       {/* subtle gradient line at the top */}
@@ -47,7 +19,7 @@ export default function About() {
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         {/* Heading */}
-        <div className={`mb-14 text-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mb-14 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="mb-2 text-xs font-semibold tracking-[0.3em] uppercase text-yellow">
             Get to know me
           </p>
@@ -58,7 +30,7 @@ export default function About() {
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
           {/* ── Left: bio + stats ── */}
-          <div className={`space-y-6 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`space-y-6 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <p className="text-text-muted leading-relaxed text-sm sm:text-base">
               I&apos;m a developer passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies at the intersection of design and development, creating experiences that not only look great but are meticulously built for performance and usability.
             </p>
@@ -71,15 +43,15 @@ export default function About() {
 
             {/* Stats row — glowing cards */}
             <div className="flex gap-4 pt-4">
-              {stats.map((s, i) => (
+              {stats.map((stat, index) => (
                 <div
-                  key={s.label}
+                  key={stat.label}
                   className={`group relative flex-1 overflow-hidden rounded-2xl border border-white/5 bg-surface/60 p-5 text-center backdrop-blur-md transition-all duration-500 hover:border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple/10`}
-                  style={{ transitionDelay: `${i * 80}ms` }}
+                  style={{ transitionDelay: `${index * 80}ms` }}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-pink/5 to-purple/5 transition-opacity duration-500" />
-                  <p className="text-2xl font-extrabold gradient-text sm:text-3xl">{s.value}</p>
-                  <p className="mt-1 text-xs text-text-muted tracking-wide uppercase">{s.label}</p>
+                  <p className="text-2xl font-extrabold gradient-text sm:text-3xl">{stat.value}</p>
+                  <p className="mt-1 text-xs text-text-muted tracking-wide uppercase">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -87,16 +59,16 @@ export default function About() {
             {/* ── Skill Bars ── */}
             <div className="space-y-4 pt-2">
               <p className="text-xs font-semibold tracking-[0.2em] uppercase text-text-muted">Proficiency</p>
-              {skills.map((s, i) => (
-                <div key={s.name} style={{ transitionDelay: `${300 + i * 80}ms` }}>
+              {skills.map((skill, index) => (
+                <div key={skill.name} style={{ transitionDelay: `${300 + index * 80}ms` }}>
                   <div className="mb-1.5 flex items-center justify-between">
-                    <span className="text-xs font-medium text-text/80">{s.name}</span>
-                    <span className="text-xs font-bold gradient-text">{s.pct}%</span>
+                    <span className="text-xs font-medium text-text/80">{skill.name}</span>
+                    <span className="text-xs font-bold gradient-text">{skill.pct}%</span>
                   </div>
                   <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/5">
                     <div
-                      className={`h-full rounded-full bg-gradient-to-r ${s.color} transition-all duration-1000 ease-out`}
-                      style={{ width: visible ? `${s.pct}%` : "0%", transitionDelay: `${400 + i * 120}ms` }}
+                      className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
+                      style={{ width: isVisible ? `${skill.pct}%` : "0%", transitionDelay: `${400 + index * 120}ms` }}
                     />
                   </div>
                 </div>
@@ -105,7 +77,7 @@ export default function About() {
           </div>
 
           {/* ── Right: Education & Focus ── */}
-          <div className={`space-y-6 transition-all duration-700 delay-400 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`space-y-6 transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
 
             {/* Education Card */}
             <div className="group relative overflow-hidden rounded-[1.5rem] border border-white/5 bg-surface/60 p-6 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink/10">
@@ -168,7 +140,7 @@ export default function About() {
         </div>
 
         {/* ── Tech Stack Marquee ── */}
-        <div className={`mt-24 transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mt-24 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="mb-8 text-center text-sm font-semibold tracking-[0.2em] uppercase text-text-muted">
             Technologies I Work With
           </p>

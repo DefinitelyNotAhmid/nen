@@ -1,24 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "@/lib/hooks/useIntersectionObserver";
 
 export default function Contact() {
-  const ref = useRef<HTMLElement>(null);
-  const [vis, setVis] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
-      { threshold: 0.2 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <section id="contact" ref={ref} className="section-padding relative overflow-hidden">
+    <section id="contact" ref={elementRef} className="section-padding relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-x-0 top-0 h-px gradient-bg opacity-20" />
       <div className="absolute left-1/4 top-1/2 -z-10 h-96 w-96 -translate-y-1/2 rounded-full bg-purple/20 blur-[120px]" />
@@ -28,7 +16,7 @@ export default function Contact() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
           
           {/* Left Column: Text & Info */}
-          <div className={`transition-all duration-1000 ${vis ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
+          <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
             <p className="mb-4 text-xs font-semibold tracking-[0.3em] uppercase text-yellow">Get in touch</p>
             <h2 className="mb-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl text-white">
               Let&apos;s build <br />
@@ -57,7 +45,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Form inside Glass Card */}
-          <div className={`relative transition-all duration-1000 delay-200 ${vis ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
+          <div className={`relative transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
             {/* Decorative border gradient */}
             <div className="absolute -inset-[1px] rounded-[2.5rem] bg-gradient-to-br from-pink/30 via-purple/30 to-transparent opacity-50" />
             

@@ -1,72 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { Project } from "@/lib/types";
+import { projects } from "@/data/projects";
+import { useIntersectionObserver } from "@/lib/hooks/useIntersectionObserver";
+import StackIcon from "tech-stack-icons";
+import { getIconName } from "@/lib/tagToIconMap";
 
-type Project = {
-  title: string;
-  desc: string;
-  longDesc: string;
-  tags: string[];
-  color: string;
-  github: string;
-  demo: string;
+// TagIcon component for rendering tech stack icons with text
+const TagIcon = ({ tag }: { tag: string }) => {
+  const iconName = getIconName(tag);
+  
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur-md transition-colors hover:bg-white/10">
+      {iconName && <StackIcon name={iconName as any} className="w-3.5 h-3.5 flex-shrink-0" />}
+      <span>{tag}</span>
+    </span>
+  );
 };
 
-const projects: Project[] = [
-  {
-    title: "Lorem Projectus",
-    desc: "Dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt.",
-    longDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    tags: ["React", "TypeScript", "Node.js"],
-    color: "from-pink to-purple",
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Ipsum Dolor",
-    desc: "Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.",
-    longDesc: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    tags: ["Vue", "Python", "Docker"],
-    color: "from-purple to-[#5CE1E6]",
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Amet Consectetur",
-    desc: "Adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore.",
-    longDesc: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-    tags: ["Angular", "Java", "MongoDB"],
-    color: "from-yellow to-pink",
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Tempor Incididunt",
-    desc: "Ut labore et dolore magna aliqua enim ad minim veniam quis nostrud.",
-    longDesc: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.",
-    tags: ["Next.js", "GraphQL", "PostgreSQL"],
-    color: "from-[#5CE1E6] to-purple",
-    github: "#",
-    demo: "#",
-  },
-];
-
 export default function Projects() {
-  const ref = useRef<HTMLElement>(null);
-  const [vis, setVis] = useState(false);
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.15 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
@@ -82,7 +39,7 @@ export default function Projects() {
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
-    <section id="projects" ref={ref} className="section-padding relative overflow-hidden">
+    <section id="projects" ref={elementRef} className="section-padding relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px gradient-bg opacity-20" />
 
       {/* ── Gradient orbs (matching Hero) ── */}
@@ -117,13 +74,13 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         
         {/* Header */}
-        <div className={`mb-12 flex flex-col items-center justify-center text-center transition-all duration-700 ${vis ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mb-12 flex flex-col items-center justify-center text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="mb-2 text-xs font-semibold tracking-[0.3em] uppercase text-yellow">My work</p>
           <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl gradient-text">Featured Projects</h2>
         </div>
 
         {/* Stacked Card Carousel */}
-        <div className={`relative mx-auto mt-16 mb-20 flex h-[460px] w-full max-w-[340px] sm:h-[500px] sm:max-w-[400px] items-center justify-center transition-all duration-1000 ${vis ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div className={`relative mx-auto mt-16 mb-20 flex h-[460px] w-full max-w-[340px] sm:h-[500px] sm:max-w-[400px] items-center justify-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
           {/* Navigation Buttons */}
           <button 
@@ -190,8 +147,8 @@ export default function Projects() {
                   <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted/90">{p.desc}</p>
                   
                   <div className="mb-6 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur-md transition-colors hover:bg-white/10">{t}</span>
+                    {p.tags.map((tag) => (
+                      <TagIcon key={tag} tag={tag} />
                     ))}
                   </div>
                   
@@ -250,8 +207,8 @@ export default function Projects() {
               <h3 className="mb-4 text-2xl font-bold text-text">{selectedProject.title}</h3>
               
               <div className="mb-8 flex flex-wrap gap-2">
-                {selectedProject.tags.map((t) => (
-                  <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-text/80">{t}</span>
+                {selectedProject.tags.map((tag) => (
+                  <TagIcon key={tag} tag={tag} />
                 ))}
               </div>
 
