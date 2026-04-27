@@ -1,152 +1,24 @@
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-gray-900 text-white py-12 dark:bg-black">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold mb-4">Marci Metzger</h3>
-              <p className="text-gray-400 mb-4">
-                The Ridge Realty Group
-              </p>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Nearly 30 years of trusted real estate expertise serving Pahrump, Las Vegas, Henderson, and surrounding Nevada communities. Your partner in finding the perfect property.
-              </p>
-            </div>
+    <footer className="border-t border-white/[0.06] py-10">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        <a href="#hero" className="text-lg font-bold gradient-text" style={{ fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}>
+          Hanin&nbsp;Taclay
+        </a>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#hero" className="text-gray-400 hover:text-white transition-colors">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#services" className="text-gray-400 hover:text-white transition-colors">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#properties" className="text-gray-400 hover:text-white transition-colors">
-                    Properties
-                  </a>
-                </li>
-                <li>
-                  <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">
-                    Testimonials
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>
-                  <a href="tel:+12069196886" className="hover:text-white transition-colors">
-                    (206) 919-6886
-                  </a>
-                </li>
-                <li>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href="https://www.facebook.com/MarciHomes/"
-                      className="text-gray-400 hover:text-white transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Facebook"
-                      title="Facebook"
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
-                        <path d="M13.5 22v-8.2h2.76l.41-3.2H13.5V8.56c0-.93.26-1.56 1.6-1.56h1.7V4.14c-.3-.04-1.33-.14-2.52-.14-2.5 0-4.2 1.52-4.2 4.32v2.28H7.5v3.2h2.58V22h3.42z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.instagram.com/marciandlauren_nvrealtors/"
-                      className="text-gray-400 hover:text-white transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram"
-                      title="Instagram"
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
-                        <path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2z" />
-                        <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-                        <path d="M17.5 6.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/in/marci-metzger-30642496/"
-                      className="text-gray-400 hover:text-white transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                      title="LinkedIn"
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
-                        <path d="M20.45 20.45h-3.55v-5.55c0-1.32-.03-3.02-1.84-3.02-1.85 0-2.13 1.44-2.13 2.93v5.64H9.38V9h3.41v1.56h.05c.47-.89 1.62-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.4v6.33z" />
-                        <path d="M5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12z" />
-                        <path d="M7.12 20.45H3.56V9h3.56v11.45z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.yelp.com/biz/marci-metzger-the-ridge-realty-pahrump"
-                      className="text-gray-400 hover:text-white transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Yelp"
-                      title="Yelp"
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
-                        <path d="M12.05 2c-.62 0-1.16.45-1.23 1.07l-.63 6.04c-.07.7.52 1.31 1.23 1.31h1.26c.7 0 1.3-.61 1.23-1.31l-.63-6.04C13.21 2.45 12.67 2 12.05 2z" />
-                        <path d="M7.43 10.38 3.2 8.14a1.18 1.18 0 0 0-1.6.52 1.23 1.23 0 0 0 .25 1.46l3.5 3.6c.46.47 1.23.47 1.69 0l.9-.9c.46-.46.46-1.23 0-1.69-.16-.16-.32-.31-.51-.45z" />
-                        <path d="M16.67 10.38c-.19.14-.35.29-.51.45-.46.46-.46 1.23 0 1.69l.9.9c.46.47 1.23.47 1.69 0l3.5-3.6a1.23 1.23 0 0 0 .25-1.46 1.18 1.18 0 0 0-1.6-.52l-4.23 2.24z" />
-                        <path d="M9.63 16.67l-2.24 4.23a1.18 1.18 0 0 0 .52 1.6 1.23 1.23 0 0 0 1.46-.25l3.6-3.5c.47-.46.47-1.23 0-1.69l-.9-.9c-.46-.46-1.23-.46-1.69 0-.16.16-.31.32-.45.51z" />
-                        <path d="M14.47 16.16c-.46.46-.46 1.23 0 1.69l3.6 3.5c.42.41 1.08.48 1.56.2.56-.32.76-1.05.44-1.62l-2.24-4.23c-.14-.19-.29-.35-.45-.51-.46-.46-1.23-.46-1.69 0l-.9.97z" />
-                      </svg>
-                    </a>
-                  </div>
-                </li>
-                <li className="pt-2">
-                  3190 HW-160, Suite F<br />
-                  Pahrump, NV 89048
-                </li>
-                <li className="pt-2">
-                  Mon-Sun: 8:00 AM - 7:00 PM
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 dark:border-white/10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-400 text-sm text-center md:text-left">
-                © {currentYear} Marci Metzger - The Ridge Realty Group. All rights reserved.
-              </p>
-              <div className="flex gap-6">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy Policy
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Terms of Service
-                </a>
-              </div>
-            </div>
-          </div>
+        <div className="flex gap-5">
+          {[
+            { label: "GitHub", href: "#", icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.7.114 2.5.34 1.9-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.59.67.5A10.013 10.013 0 0022 12c0-5.523-4.477-10-10-10z" },
+            { label: "LinkedIn", href: "#", icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" },
+            { label: "Twitter", href: "#", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+          ].map((s) => (
+            <a key={s.label} href={s.href} className="text-text-muted hover:text-yellow transition-colors" aria-label={s.label}>
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d={s.icon} /></svg>
+            </a>
+          ))}
         </div>
+
+        <p className="text-xs text-text-muted">&copy; {new Date().getFullYear()} Hanin Taclay. All rights reserved.</p>
       </div>
     </footer>
   );

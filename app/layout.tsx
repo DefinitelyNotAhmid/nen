@@ -1,144 +1,74 @@
 import type { Metadata } from "next";
-import { Cinzel } from "next/font/google";
+import { Libre_Franklin, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+/* Display font for the name — closest Google Fonts match to Franklin Gothic */
+const libreFranklin = Libre_Franklin({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["700", "800", "900"],
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
-  },
-  title: "Marci Metzger - Pahrump Realtor | The Ridge Realty Group | Nevada Real Estate",
-  description: "Trusted Pahrump Realtor with nearly 30 years of experience and $28.5M in sales. Expert in residential & commercial real estate across Nevada. Buy, sell, or invest with confidence.",
-  keywords: "Pahrump realtor, Nevada real estate, Marci Metzger, The Ridge Realty Group, homes for sale Pahrump, Las Vegas real estate, Henderson properties, commercial real estate Nevada",
-  authors: [{ name: "Marci Metzger" }],
-  creator: "Marci Metzger",
-  publisher: "The Ridge Realty Group",
-  applicationName: "Marci Metzger Homes",
-  icons: {
-    icon: [{ url: "/icon.png", type: "image/png" }],
-    shortcut: ["/icon.png"],
-    apple: [{ url: "/apple-icon.png", type: "image/png" }],
-  },
+  title: "Hanin Taclay — Full-Stack Developer",
+  description:
+    "Frontend developer crafting performant, accessible, and visually stunning web experiences with React, Next.js, and modern web technologies.",
+  keywords:
+    "frontend developer, React, Next.js, TypeScript, portfolio, Hanin Taclay, web developer",
+  authors: [{ name: "Hanin Taclay" }],
   openGraph: {
-    title: "Marci Metzger - Pahrump Realtor | The Ridge Realty Group",
-    description: "Trusted Pahrump Realtor with nearly 30 years of experience and $28.5M in sales. Expert in residential & commercial real estate across Nevada.",
+    title: "Hanin Taclay — Full-Stack Developer",
+    description:
+      "Frontend developer crafting performant, accessible, and visually stunning web experiences.",
     url: siteUrl,
-    siteName: "Marci Metzger - The Ridge Realty Group",
+    siteName: "Hanin Taclay",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Marci Metzger - Pahrump Realtor",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marci Metzger - Pahrump Realtor | The Ridge Realty Group",
-    description: "Trusted Pahrump Realtor with nearly 30 years of experience and $28.5M in sales.",
-    images: ["/twitter-image"],
+    title: "Hanin Taclay — Full-Stack Developer",
+    description:
+      "Frontend developer crafting performant, accessible, and visually stunning web experiences.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#0F0F1A",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    name: "Marci Metzger",
-    url: siteUrl,
-    telephone: "(206) 919-6886",
-    image: `${siteUrl}/opengraph-image`,
-    logo: `${siteUrl}/qt=q_95.webp`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "3190 HW-160, Suite F",
-      addressLocality: "Pahrump",
-      addressRegion: "NV",
-      postalCode: "89048",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 36.2083,
-      longitude: -115.9839,
-    },
-    hasMap: "https://www.google.com/maps?daddr=3190+HW-160,+Suite+F,+Pahrump,+Nevada+89048,+United+States",
-    openingHours: "Mo-Su 08:00-19:00",
-    areaServed: [
-      {
-        "@type": "AdministrativeArea",
-        name: "Pahrump, NV",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Las Vegas, NV",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Henderson, NV",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Nevada",
-      },
-    ],
-    sameAs: [
-      "https://www.facebook.com/MarciHomes/",
-      "https://www.instagram.com/marciandlauren_nvrealtors/",
-      "https://www.linkedin.com/in/marci-metzger-30642496/",
-      "https://www.yelp.com/biz/marci-metzger-the-ridge-realty-pahrump",
-    ],
-  };
-
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(() => {
-  try {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
-    const root = document.documentElement;
-    root.classList.toggle('dark', theme === 'dark');
-  } catch {}
-})();`,
-          }}
-        />
-      </head>
       <body
-        className={`${cinzel.variable} antialiased`}
+        className={`${libreFranklin.variable} ${montserrat.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

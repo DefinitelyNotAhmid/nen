@@ -1,84 +1,120 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Button from './Button';
+import { useEffect, useState } from "react";
+import Hero3DBackground from "./Hero3DBackground";
+import Image from "next/image";
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const id = requestAnimationFrame(() => setShow(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
-    <section 
-      id="hero" 
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 pt-20 dark:from-[#070a10] dark:to-[#0b1324]"
+    <section
+      id="hero"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-bg"
     >
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/rs%3Dw_3070%2Cm%20(1).webp"
-          alt="Luxury real estate in Pahrump, Nevada"
-          fill
-          priority
-          className="object-cover opacity-30 contrast-110 saturate-110"
-          sizes="(max-width: 768px) 100vw, 1600px"
-        />
+      {/* ── 3D Starfield & Geometry Background ── */}
+      <Hero3DBackground />
+
+      {/* ── Decorative Images ── */}
+
+      <div className={`absolute bottom-0 right-0 z-0 pointer-events-none transition-all duration-1000 delay-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <img src="/astronautonamoon.png?v=update2" alt="Astronaut on a moon" className="w-[300px] md:w-[450px] lg:w-[600px] h-auto object-contain object-bottom translate-x-5 lg:translate-x-8" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-sm sm:text-base font-semibold text-[#CE1126] uppercase tracking-wide mb-4">
-              The Ridge Realty Group
-            </p>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 dark:text-white">
-              Pahrump Realtor — Marci Metzger
-            </h1>
-            
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 mb-4 font-light dark:text-gray-200">
-              Trusted Realtor with <span className="numeric font-semibold text-[#0038A8]">$28.5M in Sales</span>
-            </p>
-            
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto dark:text-gray-300">
-              Nearly 3 decades of expertise helping clients buy, sell, and invest in residential and commercial properties across Pahrump and Nevada.
-            </p>
+      {/* ── Gradient orbs ── */}
+      <div
+        className="pointer-events-none absolute animate-float"
+        style={{
+          width: 650,
+          height: 650,
+          top: "-12%",
+          left: "-10%",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, #FF6B9A 0%, transparent 70%)",
+          filter: "blur(120px)",
+          opacity: 0.32,
+        }}
+      />
+      <div
+        className="pointer-events-none absolute animate-float"
+        style={{
+          width: 520,
+          height: 520,
+          bottom: "-14%",
+          right: "-8%",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, #7B5CFF 0%, transparent 70%)",
+          filter: "blur(120px)",
+          opacity: 0.3,
+          animationDelay: "3s",
+        }}
+      />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button 
-                variant="primary" 
-                size="lg" 
-                href="#contact"
-                ariaLabel="Schedule a showing with Marci Metzger"
-              >
-                Schedule a Showing
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                href="tel:+12069196886"
-                ariaLabel="Call Marci Metzger at 206-919-6886"
-              >
-                Call Now
-              </Button>
-            </div>
+      {/* ── Content ── */}
+      <div className="relative z-10 mx-auto max-w-3xl px-5 py-24 pt-32 text-center sm:px-8">
+        <div
+          className={`transition-all duration-[1200ms] ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+        >
+          {/* Eyebrow */}
+          <p className="mb-5 text-xs font-semibold tracking-[0.3em] uppercase text-yellow sm:text-sm animate-fade-in-up">
+            Welcome to my portfolio
+          </p>
+
+          {/* Name */}
+          <h1 className="font-display mb-4 text-4xl font-extrabold leading-[1.06] sm:text-5xl md:text-6xl lg:text-7xl gradient-text">
+            Hanin S. Taclay
+          </h1>
+
+          {/* Role */}
+          <p className="mb-4 text-lg font-light text-text/80 sm:text-2xl md:text-3xl">
+            Full-Stack Developer
+          </p>
+
+          {/* Bio */}
+          <p className="mx-auto mb-10 max-w-xl text-sm leading-relaxed text-text-muted sm:text-base">
+            I build accessible, pixel-perfect digital experiences. Currently deep diving into modern web architecture as an IT student at Western Mindanao State University.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            {/* View Projects – gradient */}
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-semibold text-white sm:text-base gradient-bg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink/20 active:scale-95"
+            >
+              View my work
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+
+            {/* Contact Me – yellow outline */}
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-yellow px-8 py-4 text-sm font-semibold text-yellow sm:text-base transition-all duration-300 hover:bg-yellow/10 hover:scale-105 active:scale-95"
+            >
+              Contact Me
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a 
-          href="#about" 
-          className="text-gray-600 hover:text-[#0038A8] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0038A8] dark:text-gray-300"
-          aria-label="Scroll to About section"
-        >
-          <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-        </a>
-      </div>
+      {/* ── Scroll cue ── */}
+      <a
+        href="#about"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-text/30 hover:text-yellow transition-colors z-10"
+        aria-label="Scroll to About section"
+      >
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </a>
     </section>
   );
 }
