@@ -95,7 +95,7 @@ export default function About() {
               <div className="relative pl-4 border-l-2 border-white/10">
                 <div className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-yellow ring-2 ring-yellow/30" />
                 <h4 className="text-base font-semibold text-text">Western Mindanao State University</h4>
-                <p className="mt-1 text-sm text-text-muted">Bachelor of Science in Computer Science</p>
+                <p className="mt-1 text-sm text-text-muted">Bachelor of Science in Information Technology</p>
                 <span className="mt-2 inline-block rounded-full bg-purple/10 px-3 py-0.5 text-xs font-semibold text-purple uppercase tracking-wider">4th Year • Present</span>
               </div>
             </div>
